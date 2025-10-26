@@ -6,3 +6,4 @@ print(digit2[0]);
 digit3 = divmod(digit2[1], 10);
 print(digit3[0]);
 print(digit3[1]);
+hguyu
