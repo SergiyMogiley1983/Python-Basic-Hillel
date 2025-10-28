@@ -1,8 +1,11 @@
 x = int(input("Enter 5-digit number: "));
-digit1 = divmod(x, 10);
-print(digit1[0]);
-digit2  = divmod(digit1[1], 100);
-print(digit2[0]);
-digit3 = divmod(digit2[1], 10);
-print(digit3[0]);
-print(digit3[1]);
+tpl_1 = divmod(x, 10);
+digit1 = tpl_1[1];
+tpl_2 = divmod(tpl_1[0], 10);
+digit2 = tpl_2[1];
+tpl_3 = divmod(tpl_2[0], 10);
+digit3 = tpl_3[1];
+tpl_4 = divmod(tpl_3[0], 10);
+digit4 = tpl_4[1];
+digit5 = tpl_4[0];
+print(digit1*10000+digit2*1000+digit3*100+digit4*10+digit5);
