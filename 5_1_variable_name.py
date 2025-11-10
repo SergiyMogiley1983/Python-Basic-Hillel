@@ -13,42 +13,42 @@
 #m3 => True
 #assert => False
 #assert_exception => True
-#super_puper__value => False
+#super_puper__value => True
+#!et_value => False
 
 import keyword
 import string
 txt = input("Enter a string: ")
 #Послідовно перевіряємо кожне з обмежень задачі, присвоюючи відповідній змінній логічне значення
-firstIsDigit = False    #перший елемент - цифра
-hasUpperLetters = False #є великі літери
-registeredWord = False  #є зареєстрованим словом
-hasSpaces = False       #є пробіли
-hasPunctuation = False  #є знаки пунктуації, крім "_"
-hasDouble_ = False      #є "__"
-stringIsVariable = True #вважаємо, що рядок може бути змінною (за замовчуванням)
+first_is_digit = False    #перший елемент - цифра
+has_upper_letters = False #є великі літери
+registered_word = False   #є зареєстрованим словом
+has_spaces = False        #є пробіли
+has_punctuation = False   #є знаки пунктуації, крім "_"
+too_many_ = False         #повне ім'я змінної складається більш ніж з одного нижнього підкреслення
+string_is_variable = True #вважаємо, що рядок може бути змінною (за замовчуванням)
 #Чи починається рядок з цифри?
 if txt[0].isdigit():
-    firstIsDigit = True
+    first_is_digit = True
 #Чи містить рядок великі літери?
 if not txt == txt.lower():
-    hasUpperLetters = True
+    has_upper_letters = True
 #Чи є рядок зареєстрованим словом?
 for key_word in keyword.kwlist:
     if txt == key_word:
-        registeredWord = True
+        registered_word = True
 #Чи містить рядок пробіли?
 for char in txt:
     if char.isspace():
-        hasSpaces = True
+        has_spaces = True
 #Чи містить рядок знаки пунктуації, крім "_"?
-if txt.count('_') == 0:
-    for char in txt:
-        if char in string.punctuation:
-            hasPunctuation = True
-if not hasPunctuation and txt.count('_') > 1: #один знак "_" завжди допускається
-    if txt.count('__') > 0:
-                hasDouble_ = True
+no_punctuation_txt = "".join(char for char in txt if (char not in string.punctuation or char == '_'))
+if not txt == no_punctuation_txt:
+    has_punctuation = True
+#Чи не забагато нижніх підкреслень?
+if len(txt) > 1 and len(txt) == txt.count('_'):
+    too_many_ = True
 #Визначаємо, чи не виконалася хоча б одна з заборонених умов
-if firstIsDigit or hasUpperLetters or registeredWord or hasSpaces or hasPunctuation or hasDouble_:
-    stringIsVariable = False
-print(stringIsVariable)
+if first_is_digit or has_upper_letters or registered_word or has_spaces or has_punctuation or too_many_:
+    string_is_variable = False
+print(string_is_variable)
