@@ -23,10 +23,14 @@ class Counter:
    def step_up(self):
        if self.current < self.max_value:
            self.current += 1
+       elif self.current == self.max_value:
+           raise ValueError("Maximum is reached!")
 
    def step_down(self):
        if self.current > self.min_value:
            self.current -= 1
+       elif self.current == self.min_value:
+           raise ValueError("Minimum is reached!")
 
    def get_current(self):
        return self.current
