@@ -53,6 +53,20 @@ class CustomerException(Exception):
         self.message = message
         super().__init__(self.message)
 
+st = Student(gender="M", age=25, first_name="John", last_name="Smith", record_book="Python")
+gr_of_studs = Group('AnyGroup')
+
+try:
+    gr_of_studs.add_student(st)
+except CustomerException(st) as e:
+    print(f"Adding error: {e}")
+except Exception as e:
+    print(f"Other mistake: {e}")
+else:
+    print("Success!")
+finally:
+    print("Block finally is always executed")
+
 st1 = Student('Male', 30, 'Steve', 'Jobs', 'AN142')
 st2 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
 st3 = Student('Female', 45, 'Marta', 'Johns', 'AN149')
@@ -67,5 +81,6 @@ assert isinstance(gr.find_student('Jobs'), Student) is True, 'Метод пои�
 
 gr.delete_student('Taylor')
 print(gr)  # Only one student
+
 
 gr.delete_student('Taylor')  # No error!
