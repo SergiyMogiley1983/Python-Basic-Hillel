@@ -53,34 +53,26 @@ class CustomerException(Exception):
         self.message = message
         super().__init__(self.message)
 
-st = Student(gender="M", age=25, first_name="John", last_name="Smith", record_book="Python")
-gr_of_studs = Group('AnyGroup')
-
-try:
-    gr_of_studs.add_student(st)
-except CustomerException(st) as e:
-    print(f"Adding error: {e}")
-except Exception as e:
-    print(f"Other mistake: {e}")
-else:
-    print("Success!")
-finally:
-    print("Block finally is always executed")
-
 st1 = Student('Male', 30, 'Steve', 'Jobs', 'AN142')
 st2 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
 st3 = Student('Female', 45, 'Marta', 'Johns', 'AN149')
-gr = Group('PD1')
-gr.add_student(st1)
-gr.add_student(st2)
-gr.add_student(st3)
-print(gr)
-assert str(gr.find_student('Jobs')) == str(st1), 'Test1'
-assert gr.find_student('Jobs2') is None, 'Test2'
-assert isinstance(gr.find_student('Jobs'), Student) is True, 'Метод поиска должен возвращать экземпляр'
+st4 = Student('Male', 33, 'Steven', 'Johnson', 'AN141')
+st5 = Student('Male', 30, 'Steve', 'Jobs', 'AN142')
+st6 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
+st7 = Student('Female', 45, 'Marta', 'Johns', 'AN149')
+st8 = Student('Male', 33, 'Steven', 'Johnson', 'AN141')
+st9 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
+st10 = Student('Female', 45, 'Marta', 'Johns', 'AN149')
+st11 = Student('Male', 33, 'Steven', 'Johnson', 'AN141')
 
-gr.delete_student('Taylor')
-print(gr)  # Only one student
+lst_of_students = [st1, st2, st3, st4, st5, st6, st7, st8, st9, st10, st11]
+gr_of_studs = Group('Group of students')
 
-
-gr.delete_student('Taylor')  # No error!
+for stu in lst_of_students:
+    try:
+        gr_of_studs.add_student(stu)
+        print(f"Student {stu} is added to {gr_of_studs.number}")
+    except CustomerException as e:
+        print(f"Mistake: {e}")
+    except Exception as e:
+        print(f"Another mistake: {e}")
